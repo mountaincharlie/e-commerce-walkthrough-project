@@ -84,6 +84,21 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
+# temporary for logging account creation confirmation emails to the console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# allowing allauth to use username or email for logging in
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+# ensuring that email is required and the user has to confirm its correct
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+# setting minimum username length
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+# setting the login url and redirect url
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+
 WSGI_APPLICATION = 'relove_music.wsgi.application'
 
 
