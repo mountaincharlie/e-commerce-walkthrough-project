@@ -1,0 +1,102 @@
+html{
+    height:100%;
+}
+
+body{
+    background-image: url('/media/relove-music-homepage-image.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* see CI video credit for what this is doing and why */
+    /* for fixed header on medium and above screens */
+    height: calc(100vh - 164px);
+    color:rgb(34, 33, 33);
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* from Bulma - for making fontawesome icons central but dont use unless you need to and know how it works*/
+/* .icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+} */
+
+
+/* ------------------- backgrounds for text */
+
+.text-transparent-bg{
+    background-color: rgba(34, 34, 34, 0.5);
+    border-radius: 4px;
+}
+
+
+/* ------------------- logo styling */
+
+.logo-font {
+    text-transform: uppercase;
+}
+
+.main-logo-link {
+    width: fit-content;
+}
+
+
+/* ------------------- buttons */
+
+.shop-now-button {
+    background: black;
+    color: white;
+    min-width: 260px;
+}
+
+.btn-black {
+    background: black;
+    color: white;
+}
+
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus,
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus {
+    background: #222;
+    color: white;
+}
+
+/* ------------------- manual black text css (not in BS at the time of CI video recording) */
+
+.text-black {
+    color: #000 !important;
+}
+
+.border-black {
+    border: 1px solid black !important;
+}
+
+
+/* -------------------------------- Media Queries */
+
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
+/* fixed top navbar only on medium and larger screens */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .header-container {
+        padding-top: 164px;
+    }
+}
