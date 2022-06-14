@@ -1,0 +1,75 @@
+<!-- link to home -->
+<div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+    <a href="{% url 'home' %}" class="nav-link main-logo-link">
+        <h2 class="logo-font text-black my-0">
+            <!-- icon credit: https://fontawesome.com/icons/music?s=solid -->
+            <i class="fa-solid fa-music"></i>
+            <strong>Re-love</strong> Music
+        </h2>
+    </a>
+</div>
+<!-- search form -->
+<div class="col-12 col-lg-4">
+    <!-- url to submit to to be added later (action) -->
+    <form method="GET" action="">
+        <div class="input-group w-100">
+            <!-- the 'query' is what is being submitted -->
+            <input class="form-control border border-black rounded-0 " type="text" name="query" placeholder="Search our collection">
+            <!-- container for submit button (add aria-labels in these cases) -->
+            <div class="input-group-append">
+                <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                    <span class="icon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- account and 'flatbed cart' links -->
+<div class="col-12 col-lg-4">
+    <ul class="list-inline list-unstyled text-center text-lg-right my-0">
+        <!-- uses bootstrap dropdown -->
+        <li class="list-inline-item dropdown">
+            <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+                <div class="text-center">
+                    <div><i class="fas fa-user fa-lg"></i></div>
+                    <!-- change to say the user's name? -->
+                    <p class="my-0">My Account</p>
+                </div>
+            </a>
+            <!-- options in the dowpdown [follow your structure from P4] -->
+            <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                <!-- user must have an account and be logged in -->
+                {% if request.user.is_authenticated %}
+                    <!-- if the user is an admin -->
+                    {% if request.user.is_superuser %}
+                        <a href="#" class="dropdown-item">Product Management</a>
+                    {% endif %}
+                    <a href="#" class="dropdown-item">My Profile</a>
+                    <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                {% else %}
+                    <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                    <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                {% endif %}
+            </div>
+        </li>
+        <li class="list-inline-item">
+            <!-- if statement can be applied within the class attribute -->
+            <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="#">
+                <div class="text-center">
+                    <!-- icon credit: https://fontawesome.com/icons/cart-flatbed-suitcase?s=solid -->
+                    <div><i class="fa-solid fa-cart-flatbed-suitcase"></i></div>
+                    <p class="my-0">
+                        <!-- if 'grand_total' exists then we display it to 2 dp -->
+                        {% if grand_total %}
+                            ${{ grand_total|floatformat:2 }}
+                        {% else %}
+                            $0.00
+                        {% endif %}
+                    </p>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
