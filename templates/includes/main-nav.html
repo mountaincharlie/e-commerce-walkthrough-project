@@ -1,0 +1,63 @@
+<!-- 
+    seperate html snippet for collapsable navbar to prevent base.html becoming too cluttered
+-->
+
+<!-- collapsable navbar for shrinking to burger icon on mobile screens -->
+<div class="collapse navbar-collapse" id="main-nav">
+    <ul class="navbar-nav w-auto mx-auto">
+
+        <!-- All Products dropdown -->
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                All Products
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
+                <a href="" class="dropdown-item">By Price</a>
+                <a href="" class="dropdown-item ">By Rating</a>
+                <a href="" class="dropdown-item ">By Category</a>
+                <a href="" class="dropdown-item">All Products</a>
+            </div>
+        </li>
+
+        <!-- Instruments dropdown -->
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="instruments-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Instruments
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="instruments-link">
+                <a href="" class="dropdown-item">Pianos &amp; Keyboards</a>
+                <a href="" class="dropdown-item">Stringed Instruments</a>
+                <a href="" class="dropdown-item">Drums &amp; Purcussion</a>
+                <a href="" class="dropdown-item">All Instruments</a>
+            </div>
+        </li>
+
+        <!-- Music Equipment dropdown -->
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="music-equipment-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Music Equipment
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="music-equipment-link">
+                <a href="" class="dropdown-item">Microphones</a>
+                <a href="" class="dropdown-item">Mixing Desks</a>
+                <a href="" class="dropdown-item">Audio Interfaces</a>
+                <a href="" class="dropdown-item">Amplifiers</a>
+                <a href="" class="dropdown-item">Cables &amp; Adapters</a>
+                <a href="" class="dropdown-item">All Homeware</a>
+            </div>
+        </li>
+
+        <!-- Special Offers dropdown -->
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-black" href="#" id="specials-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Special Offers
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="specials-link">
+                <a href="" class="dropdown-item">New Arrivals</a>
+                <a href="" class="dropdown-item">Deals</a>
+                <a href="" class="dropdown-item">Clearance</a>
+                <a href="" class="dropdown-item">All Specials</a>
+            </div>
+        </li>
+    </ul>
+</div>

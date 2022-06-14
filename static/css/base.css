@@ -76,6 +76,10 @@ body{
     border: 1px solid black !important;
 }
 
+.bg-black{
+    background-color: #000 !important;
+}
+
 
 /* -------------------------------- Media Queries */
 
