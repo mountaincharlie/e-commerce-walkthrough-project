@@ -6,6 +6,10 @@ class Category(models.Model):
     Categories for the instruments and equipment with
     programatic name and name visible to users
     """
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     name = models.CharField(max_length=260)
     visible_name = models.CharField(max_length=260, null=True, blank=True)
 
