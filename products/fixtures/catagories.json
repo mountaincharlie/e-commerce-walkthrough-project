@@ -1,0 +1,48 @@
+[
+    {"pk": 1,
+        "model": "products.category",
+        "fields":
+        {"name": "pianos_keyboards", "visible_name": "Pianos & Keyboards"}
+    },
+    {"pk": 2,
+        "model": "products.category",
+        "fields":
+        {"name": "stringed_instruments", "visible_name": "Stringed Instruments"}
+    },
+    {"pk": 3,
+        "model": "products.category",
+        "fields": {"name": "drums_purcussion", "visible_name": "Drums & Purcussion"}
+    },
+    {"pk": 4,
+        "model": "products.category",
+        "fields": {"name": "microphones", "visible_name": "Microphones"}
+    },
+    {"pk": 5,
+        "model": "products.category",
+        "fields": {"name": "mixing_desks_headphones", "visible_name": "Mixing Desks & Headphone"}
+    },
+    {"pk": 6,
+        "model": "products.category",
+        "fields": {"name": "audio_interfaces", "visible_name": "Audio Interfaces"}
+    },
+    {"pk": 7,
+        "model": "products.category",
+        "fields": {"name": "amplifiers", "visible_name": "Amplifiers"}
+    },
+    {"pk": 8,
+        "model": "products.category",
+        "fields": {"name": "cables_adapters", "visible_name": "Cables & Adapters"}
+    },
+    {"pk": 9,
+        "model": "products.category",
+        "fields": {"name": "new_arrivals", "visible_name": "New Arrivals"}
+    },
+    {"pk": 10,
+        "model": "products.category",
+        "fields": {"name": "deals", "visible_name": "Deals"}
+    },
+    {"pk": 11,
+        "model": "products.category",
+        "fields": {"name": "clearance", "visible_name": "Clearance"}
+    }
+]

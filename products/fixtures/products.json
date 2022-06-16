@@ -1,0 +1,639 @@
+[
+    {
+        "pk": 1, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st30044879",
+            "name": "Adagio Professional Series Violin Strings",
+            "description": "4/4 silver chrome plated strings for violin by Adagio. Unused. New.",
+            "price": 3.99,
+            "rating": 3.9,
+            "image": "adagio_professional_series_violin_strings_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 2, 
+        "model": "products.product",
+        "fields": {
+            "category": 1,
+            "sku": "pk40032957",
+            "name": "Aklot Wooden Kalimba",
+            "description": "Wooden finger piano Kalimba by Aklot. Comes with zipped protective hard case and tuning hammer. Hardly used. Like New.",
+            "price": 12.99,
+            "rating": 4.6,
+            "image": "aklot_wooden_kalimba_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 3, 
+        "model": "products.product",
+        "fields": {
+            "category": 8,
+            "sku": "ca20078527",
+            "name": "Annnwzzd Pack of Two 4m Cord Jack Cables",
+            "description": "Pack of two red cord male jack to male jack cable. Each 4 meters in length, with velcro cable tidies. Hardly used. Like New.",
+            "price": 7.99,
+            "rating": 4.2,
+            "image": "annnwzzd_pack_of_two_4m_cord_jack_cables_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 4, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st30044529",
+            "name": "Aria AK20 Classical Acoustic Guitar",
+            "description": "Nylon stringed, classical style acoustic guitar by Aria. Used. Good condition.",
+            "price": 18.99,
+            "rating": 4.7,
+            "image": "aria_ak20_classical_nylon_stringed_acoustic_guitar_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 5, 
+        "model": "products.product",
+        "fields": {
+            "category": 1,
+            "sku": "pk40017657",
+            "name": "Arturia Minilab mkII",
+            "description": "White Minilab mkII midi keyboard by Arturia, with usb-C cable. Hardly used. Like new.",
+            "price": 65.99,
+            "rating": 4.9,
+            "image": "arturia_minilab_mkii_white_midi_keyboard_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 6, 
+        "model": "products.product",
+        "fields": {
+            "category": 4,
+            "sku": "mi70045197",
+            "name": "Audio Technica MB2k Dynamic Microphone",
+            "description": "Dynamic hand held microphone by Audio Technica, with microphone stand clip and padded protective case. Hardly used. Like new.",
+            "price": 21.99,
+            "rating": 4.5,
+            "image": "audio_technica_mb2k_dynamic_micrphone_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 7, 
+        "model": "products.product",
+        "fields": {
+            "category": 4,
+            "sku": "mi70043287",
+            "name": "Audio Technica Microphone Stand",
+            "description": "Adjustable microphone stand by Audio Technica, with pop filter. Used. Very good condition.",
+            "price": 11.99,
+            "rating": 3.5,
+            "image": "audio_technica_mic_stand_with_filter_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 8, 
+        "model": "products.product",
+        "fields": {
+            "category": 8,
+            "sku": "ca20073527",
+            "name": "Basic 3m XLR Cable",
+            "description": "3 meter male to female XLR cable. Used. Good condition.",
+            "price": 4.99,
+            "rating": 3.2,
+            "image": "basic_3m_xlr_cable_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 9, 
+        "model": "products.product",
+        "fields": {
+            "category": 4,
+            "sku": "mi70043288",
+            "name": "Behringer C-1 Studio Condenser Microphone",
+            "description": "Studio Condenser Microphone by Behringer, with microphone stand adapter and protective carry hardcase. Hardly used. Like new.",
+            "price": 22.99,
+            "rating": 4.8,
+            "image": "behringer_c1_studio_condenser_microphone_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 10, 
+        "model": "products.product",
+        "fields": {
+            "category": 6,
+            "sku": "ai60029836",
+            "name": "Behringer U-Phoria UMC204 HD",
+            "description": "U-Phoria UMC204 HD audio interface by Behringer, with usb-C cable. Hardly used. Like new.",
+            "price": 62.99,
+            "rating": 4.9,
+            "image": "behringer_u_phoria_umc204hd_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 11, 
+        "model": "products.product",
+        "fields": {
+            "category": 5,
+            "sku": "mh50011826",
+            "name": "Behringer Xenyx802 Premium Mixing Desk",
+            "description": "8 input, 2 bus mixing desk by Behringer, with power block cable and velcro cable tidy. Used. Good condition.",
+            "price": 33.99,
+            "rating": 4.1,
+            "image": "behringer_xenyx802_premium_mixing_desk_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 12, 
+        "model": "products.product",
+        "fields": {
+            "category": 5,
+            "sku": "mh50011276",
+            "name": "Beyerdynamic DT 770 Pro 80ohm Headphones",
+            "description": "Professional studio 80ohm headphones by Beyerdynamics, with gold-plated jack 3.5mm which unscrews to 1/4 inch jack. Hardly used. Like new.",
+            "price": 99.99,
+            "rating": 4.9,
+            "image": "beyerdynamic_dt_770_pro_80ohm_headphones_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 13, 
+        "model": "products.product",
+        "fields": {
+            "category": 5,
+            "sku": "mh50011277",
+            "name": "Black and Red Bluetooth Headphones",
+            "description": "Bluetooth padded headphones with red and black design. Used. Good condition.",
+            "price": 15.99,
+            "rating": 3.9,
+            "image": "black_and_red_headphones_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 14, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st30047329",
+            "name": "Black Universal Guitar Stand",
+            "description": "Lightweight collapsable black steel and rubber guitar stand for electric, acoustic or bass guitars. Used. Very good condition.",
+            "price": 7.99,
+            "rating": 4.4,
+            "image": "black_universal_guitar_stand_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 15, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st30047336",
+            "name": "BOSS Reverb Guitar Pedal",
+            "description": "Reverb guitar pedal by BOSS, with mono and stereo inputs. Hardly used. Like new.",
+            "price": 118.99,
+            "rating": 4.7,
+            "image": "boss_reverb_pedal_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 16, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st30047881",
+            "name": "Cecilio Black Hollowbody Electric Violin",
+            "description": "Hollowbodied black electric violin by Cecilio. Includes protective hard carry case, 1 kit bow, 1 professional brazilwood bow, rosin, detachable shoulder hold, 2 meter jack cable, microfibre cloth and bridge mute. Hardly used. Like new.",
+            "price": 89.99,
+            "rating": 4.8,
+            "image": "cecilio_black_hollowbody_electric_violin_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 17, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st30047883",
+            "name": "Columbus Vintage 335 Burgandy Electric-Acoustic Guitar",
+            "description": "Vintage burgandy electric-acoustic guitar by Columus. Used. Good condition.",
+            "price": 379.99,
+            "rating": 4.7,
+            "image": "columbus_vintage_335_burgandy_electric_acoustic_guitar_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 18, 
+        "model": "products.product",
+        "fields": {
+            "category": 3,
+            "sku": "dp10075929",
+            "name": "Drumeo P4 Practice Drum Pad",
+            "description": "Practice drum pad designed by Pat Perillo with four different surface for more realistic drill practice. Used. Very good condition.",
+            "price": 20.99,
+            "rating": 4.3,
+            "image": "drumeo_p4_practice_drum_pad_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 19, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st30047884",
+            "name": "Encore EA255 Steel Stringed Acoustic Guitar",
+            "description": "Steel stringed classical acoustic guitar by Encore. Used. Good condition.",
+            "price": 37.99,
+            "rating": 3.3,
+            "image": "encore_ea255_classical_steel_stringed_acoustic_guitar_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 20, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st30047885",
+            "name": "Eno Clip on Guitar Tuner",
+            "description": "Clip on guitar tuner by Eno. Has four settings: guitar, violin, bass and chromatic. Adjustable frequency setting. LED display. Has two mode: microphone or clip which takes the vibratinos from the instrument. Used. Very good condition.",
+            "price": 5.99,
+            "rating": 4.3,
+            "image": "eno_clip_on_guitar_tuner_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 21, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st30047886",
+            "name": "Ernie Ball Plain Black Guitar Strap",
+            "description": "Plain black guitar strap by Ernie Ball for electric, acoustic and bass guitars. Used. Very good condition.",
+            "price": 4.99,
+            "rating": 4.5,
+            "image": "ernie_ball_plain_black_guitar_strap_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 22, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st30047887",
+            "name": "Fender Black Squire Stratocaster Electric Guitar",
+            "description": "Black Squire Stratocaster electric guitar by Fender, with plain black guitar strap. Used. Very good condition.",
+            "price": 87.99,
+            "rating": 4.6,
+            "image": "fender_black_squire_strat_electric_guitar_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 23, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st30047888",
+            "name": "RARE Fender Blue Modern Marauder Electric Guitar",
+            "description": "Extremely rare modern marauder electric guitar by Fender in pearlescent pale blue. Used. Very good condition.",
+            "price": 1985.99,
+            "rating": 4.6,
+            "image": "fender_pearl_blue_electric_guitar_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 24, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st300478889",
+            "name": "Fender Striped 2m Cord Jack Cable",
+            "description": "Stripped 2 meter cord male jack to 90 degree jack by Fender, with branded velcro cable tidy. Hardly used. Very good condition.",
+            "price": 17.99,
+            "rating": 4.5,
+            "image": "fender_striped_2m_cord_jack_cable_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 25, 
+        "model": "products.product",
+        "fields": {
+            "category": 3,
+            "sku": "dp10075936",
+            "name": "Meinl Egg shakers Pack of Three",
+            "description": "Egg shakers by Meinl. Pack of three; grey (medium), red (loud) and black (extra loud). Used. Good condition.",
+            "price": 6.99,
+            "rating": 4.1,
+            "image": "IMG_20220615_133107.jpg"
+        }
+    },
+    {
+        "pk": 26, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st300478890",
+            "name": "Kala Woodstain Soprano Ukulele",
+            "description": "Woodstain colour soprano ukulele by Kala, with black soft carry case. Hardly used. Very good condition.",
+            "price": 22.99,
+            "rating": 4.8,
+            "image": "kala_woodstain_soprano_ukulele_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 27, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st300478891",
+            "name": "Mahalo Sunburst Soprano Ukulele",
+            "description": "Sunburst colour soprano ukulele by Mahalo in electric guitar shape. Used. Good condition.",
+            "price": 17.99,
+            "rating": 4.2,
+            "image": "mahalo_sunburst_soprano_ukulele_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 28, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st300478892",
+            "name": "Mahalo Teal Concert Ukulele",
+            "description": "Teal colour concert ukulele by Mahalo, with leather soft carry case. Used. Good condition.",
+            "price": 19.99,
+            "rating": 4.3,
+            "image": "mahalo_teal_concert_ukulele_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 29, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st300478893",
+            "name": "RARE Line 6 Floor Board Pedal Station",
+            "description": "No longer made, rare item. Electric guitar pedal board station by Line 6 with 7 buttons and 2 foot pedals. Includes usb-C cable. Used. Good condition.",
+            "price": 89.99,
+            "rating": 4.4,
+            "image": "line_6_floor_board_pedal_station_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 30, 
+        "model": "products.product",
+        "fields": {
+            "category": 7,
+            "sku": "am90038726",
+            "name": "Line 6 Spider III Electric Guitar Amplifier",
+            "description": "Electric guitar amplifier by Line 6 with 6 modes, 4 banks for recording, 8 adjustable effect dials, tap setting control and tuner. Used. Very good condition.",
+            "price": 189.99,
+            "rating": 4.7,
+            "image": "line_6_spider_iii_amp_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 31, 
+        "model": "products.product",
+        "fields": {
+            "category": 8,
+            "sku": "ca20073528",
+            "name": "Male Jack to Female Minijack Adapter",
+            "description": "Male jack to female minijack adapter. Used. Very good condition.",
+            "price": 1.99,
+            "rating": 3.7,
+            "image": "male_jack_to_female_minijack_adapter_15_05_22.jpg"
+        }
+    },
+    {
+        "pk": 32, 
+        "model": "products.product",
+        "fields": {
+            "category": 8,
+            "sku": "ca20073529",
+            "name": "Male Jack to Female Minijack Short Adapter Cable",
+            "description": "Male jack to female minijack adapter short cable. Used. Very good condition.",
+            "price": 1.99,
+            "rating": 4.8,
+            "image": "male_jack_to_female_minijack_short_adapter_cable_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 33, 
+        "model": "products.product",
+        "fields": {
+            "category": 8,
+            "sku": "ca20073530",
+            "name": "Male Jack to Two Female Jacks Adapter Cable",
+            "description": "Male jack to 2 female jacks adapter cable. Used. Very good condition.",
+            "price": 2.99,
+            "rating": 4.4,
+            "image": "male_jack_to_two_female_jacks_adapter_cable_15_05_22.jpg"
+        }
+    },
+    {
+        "pk": 34, 
+        "model": "products.product",
+        "fields": {
+            "category": 8,
+            "sku": "ca20073531",
+            "name": "Male Minijack to Two Female Minijacks Adapter",
+            "description": "Male minijack to 2 female minijacks adapter. Used. Very good condition.",
+            "price": 1.99,
+            "rating": 3.4,
+            "image": "male_minijack_to_two_female_minijacks_adapter_15_05_22.jpg"
+        }
+    },
+    {
+        "pk": 35, 
+        "model": "products.product",
+        "fields": {
+            "category": 8,
+            "sku": "ca20073532",
+            "name": "Male Minijack to Two Female Minijacks Adapter Cable",
+            "description": "Male minijack to 2 female minijacks adapter cable. Commonly used as an earphones splitter. Used. Very good condition.",
+            "price": 4.99,
+            "rating": 4.7,
+            "image": "male_minijack_to_two_female_minijacks_adapter_cable_15_05_22.jpg"
+        }
+    },
+    {
+        "pk": 36, 
+        "model": "products.product",
+        "fields": {
+            "category": 8,
+            "sku": "ca20073533",
+            "name": "Pack of Two Male Jack to Female Minijack Adapter Cables",
+            "description": "Pack of 2 male jack to female minijack adapter cables. Used. Very good condition.",
+            "price": 6.99,
+            "rating": 4.7,
+            "image": "pack_of_two_male_jack_to_female_minijack_adapter_cables_15_05_22.jpg"
+        }
+    },
+    {
+        "pk": 37, 
+        "model": "products.product",
+        "fields": {
+            "category": 8,
+            "sku": "ca20073534",
+            "name": "Pack of Two Male Minijack to Female Jack Adapters",
+            "description": "Pack of 2 male minijack to female jack adapters. Used. Very good condition.",
+            "price": 4.99,
+            "rating": 4.1,
+            "image": "pack_of_two_male_minijack_to_female_jack_adapters_15_05_22.jpg"
+        }
+    },
+    {
+        "pk": 38, 
+        "model": "products.product",
+        "fields": {
+            "category": 8,
+            "sku": "ca20073535",
+            "name": "Stagg 3m XLR Cable",
+            "description": "High quality 3 meter male to female XLR cable by Stagg. Used. Very good condition.",
+            "price": 7.99,
+            "rating": 4.3,
+            "image": "stagg_3m_xlr_cable_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 39, 
+        "model": "products.product",
+        "fields": {
+            "category": 8,
+            "sku": "ca20073536",
+            "name": "Pack of Three Stagg Jack Cables",
+            "description": "Pack of 3 high quality 2 meter male to male jack cables by Stagg, each with velcro cable tidy. Used. Very good condition.",
+            "price": 12.99,
+            "rating": 4.4,
+            "image": "stagg_jack_cables_pack_of_three_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 40, 
+        "model": "products.product",
+        "fields": {
+            "category": 3,
+            "sku": "dp10075937",
+            "name": "Meinl Black and Wood Cajon",
+            "description": "Textured black and wood finish cajon by Meinl. Small dent in lower right side, but no effect to the sound quality. Used. Good condition.",
+            "price": 22.99,
+            "rating": 4.2,
+            "image": "meinl_black_and_wood_cajon_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 41, 
+        "model": "products.product",
+        "fields": {
+            "category": 3,
+            "sku": "dp10075938",
+            "name": "Vic Firth 5a Drum Sticks",
+            "description": "Pair of 5a hickory drum sticks by Vic Firth. Hardly used. Very good condition.",
+            "price": 10.99,
+            "rating": 4.5,
+            "image": "vic_firth_5a_drum_sticks_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 42, 
+        "model": "products.product",
+        "fields": {
+            "category": 1,
+            "sku": "pk40032958",
+            "name": "Mugig Wooden Kalimba",
+            "description": "Premium wooden finger piano Kalimba by Mugig. Comes with zipped protective hard case, tuning hammer, rubber thumb protectors, basic playing instructions and microfibre cleaning cloth. Hardly used. Like New.",
+            "price": 17.99,
+            "rating": 4.3,
+            "image": "mugig_wooden_kalimba_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 43, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st300478894",
+            "name": "Music Note Guitar Capo",
+            "description": "Simple dark chrome guitar capo with musical note design. Used. Very good condition.",
+            "price": 3.99,
+            "rating": 4.8,
+            "image": "music_note_guitar_capo_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 44, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st300478895",
+            "name": "Yamaha APX500II Acoustic Electric Guitar",
+            "description": "Pale wood gloss finish acoustic electric guitar by Yamaha. Used. Very good condition.",
+            "price": 313.99,
+            "rating": 4.9,
+            "image": "yamaha_apx500ii_acoustic_electric_guitar_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 45, 
+        "model": "products.product",
+        "fields": {
+            "category": 2,
+            "sku": "st300478896",
+            "name": "Stagg Woodstain Bass Guitar",
+            "description": "Dark woodstain finish bass guitar by Stagg. Used. Good condition.",
+            "price": 150.99,
+            "rating": 4.6,
+            "image": "stagg_woodstain_bass_guitar_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 46, 
+        "model": "products.product",
+        "fields": {
+            "category": 9,
+            "sku": "na91072856",
+            "name": "QI MEI Chromatic Harmonica",
+            "description": "Chrome finish chromatic harmonica by QI MEI. Unused. New.",
+            "price": 19.99,
+            "rating": 4.5,
+            "image": "qi_mei_chrome_chromatic_harmonica_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 47, 
+        "model": "products.product",
+        "fields": {
+            "category": 1,
+            "sku": "pk40017658",
+            "name": "Yamaha P45 Electric Keyboard",
+            "description": "88-key electric keyboard by Yamaha, with 5 reverb settings, 10 different voices, ability to combine 2 voices, split mode for tutoring, metranome and usb-C port for midi connection to music production software. Used. Good condition.",
+            "price": 366.99,
+            "rating": 4.9,
+            "image": "yamaha_p45_electric_keyboard_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 48, 
+        "model": "products.product",
+        "fields": {
+            "category": 7,
+            "sku": "am90038727",
+            "name": "Stagg CA 20B Dual Input Bass Amplifier",
+            "description": "Bass guitar amplifier with dual input by Stagg, with 2 volume adjustment dials, 4 equalisation adjustment dials and headphone port. Used. Good condition.",
+            "price": 25.99,
+            "rating": 4.3,
+            "image": "stagg__ca_20b_dual_input_amp_15_06_22.jpg"
+        }
+    },
+    {
+        "pk": 49, 
+        "model": "products.product",
+        "fields": {
+            "category": 7,
+            "sku": "am90038728",
+            "name": "Yamaha THR10C Amplifier",
+            "description": "Practice combo amplifier by Yamaha, with 8 amp types, 5 memory banks, tuner, tap timer, phones and aux outputs, equalisation and volume and effects dials. Comes with power brick charging cable, usb-C cable and Yamaha software for designing and programming sound effects for the amp. Hardly used. Very good condition.",
+            "price": 235.99,
+            "rating": 4.8,
+            "image": "yamaha_thr10c_amp_15_06_22.jpg"
+        }
+    }  
+]
