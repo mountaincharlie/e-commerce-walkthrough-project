@@ -12,9 +12,11 @@
                 All Products
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
-                <a href="" class="dropdown-item">By Price</a>
-                <a href="" class="dropdown-item ">By Rating</a>
-                <a href="" class="dropdown-item ">By Category</a>
+                <!-- adding specific sorting parameters to these links -->
+                <!-- using sort to sort by 'price' field, and direction set to ascending -->
+                <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
+                <a href="{% url 'products' %}?sort=rating&direction=desc" class="dropdown-item ">By Rating</a>
+                <a href="{% url 'products' %}?sort=category&direction=asc" class="dropdown-item ">By Category</a>
                 <a href="{% url 'products' %}" class="dropdown-item">All Products</a>
             </div>
         </li>
@@ -25,10 +27,11 @@
                 Instruments
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="instruments-link">
-                <a href="" class="dropdown-item">Pianos &amp; Keyboards</a>
-                <a href="" class="dropdown-item">Stringed Instruments</a>
-                <a href="" class="dropdown-item">Drums &amp; Purcussion</a>
-                <a href="" class="dropdown-item">All Instruments</a>
+                <!-- after the url path the ? indicates a category is going to be provided -->
+                <a href="{% url 'products' %}?category=pianos_keyboards" class="dropdown-item">Pianos &amp; Keyboards</a>
+                <a href="{% url 'products' %}?category=stringed_instruments" class="dropdown-item">Stringed Instruments</a>
+                <a href="{% url 'products' %}?category=drums_purcussion" class="dropdown-item">Drums &amp; Purcussion</a>
+                <a href="{% url 'products' %}?category=pianos_keyboards,stringed_instruments,drums_purcussion" class="dropdown-item">All Instruments</a>
             </div>
         </li>
 
@@ -38,12 +41,12 @@
                 Music Equipment
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="music-equipment-link">
-                <a href="" class="dropdown-item">Microphones</a>
-                <a href="" class="dropdown-item">Mixing Desks</a>
-                <a href="" class="dropdown-item">Audio Interfaces</a>
-                <a href="" class="dropdown-item">Amplifiers</a>
-                <a href="" class="dropdown-item">Cables &amp; Adapters</a>
-                <a href="" class="dropdown-item">All Homeware</a>
+                <a href="{% url 'products' %}?category=microphones" class="dropdown-item">Microphones</a>
+                <a href="{% url 'products' %}?category=mixing_desks_headphones" class="dropdown-item">Mixing Desks</a>
+                <a href="{% url 'products' %}?category=audio_interfaces" class="dropdown-item">Audio Interfaces</a>
+                <a href="{% url 'products' %}?category=amplifiers" class="dropdown-item">Amplifiers</a>
+                <a href="{% url 'products' %}?category=cables_adapters" class="dropdown-item">Cables &amp; Adapters</a>
+                <a href="{% url 'products' %}?category=microphones,mixing_desks_headphones,audio_interfaces,amplifiers,cables_adapters" class="dropdown-item">All Equipment</a>
             </div>
         </li>
 
@@ -53,10 +56,10 @@
                 Special Offers
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="specials-link">
-                <a href="" class="dropdown-item">New Arrivals</a>
-                <a href="" class="dropdown-item">Deals</a>
-                <a href="" class="dropdown-item">Clearance</a>
-                <a href="" class="dropdown-item">All Specials</a>
+                <a href="{% url 'products' %}?category=new_arrivals" class="dropdown-item">New Arrivals</a>
+                <a href="{% url 'products' %}?category=deals" class="dropdown-item">Deals</a>
+                <a href="{% url 'products' %}?category=clearance" class="dropdown-item">Clearance</a>
+                <a href="{% url 'products' %}?category=new_arrivals,deals,clearance" class="dropdown-item">All Special Offers</a>
             </div>
         </li>
     </ul>

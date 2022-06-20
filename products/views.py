@@ -14,9 +14,29 @@ def all_products(request):
     products = Product.objects.all()  # gets all the products first
     query = None  # to prevent errors when query is empty
     categories = None
+    sort = None
+    direction = None
 
     # handling GET requests
     if request.GET:
+
+        # checking if sorting has been applied first
+        if 'sort' in request.GET:
+            sort_key = request.GET['sort']
+            sort = sort_key  # sent to context?
+            # using 'annotation' to add temporary field to model
+            if sort_key == 'name':
+                sort_key = 'lower_name'
+                products = products.annotate(lower_name=Lower('name'))
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                # check if its decending so you add a '-' before
+                if direction == 'desc':
+                    sort_key = f'-{sort_key}'
+
+            # ordering the products
+            products = products.order_by(sort_key)
+
 
         # handling category selections
         if 'category' in request.GET:
@@ -40,11 +60,14 @@ def all_products(request):
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
 
+    # defining the current sorting 
+    current_sorting = f'{sort}_{direction}'
     # data to be rendered in the html file
     context = {
         'products': products,
         'product_search': query,
         'search_categories': categories,
+        'sort_parameters': current_sorting,
     }
 
     return render(request, 'products/products.html', context)
