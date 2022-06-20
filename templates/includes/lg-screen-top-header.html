@@ -10,8 +10,8 @@
 </div>
 <!-- search form -->
 <div class="col-12 col-lg-4">
-    <!-- url to submit to to be added later (action) -->
-    <form method="GET" action="">
+    <!-- url to submit to action = products url path to view -->
+    <form method="GET" action="{% url 'products' %}">
         <div class="input-group w-100">
             <!-- the 'query' is what is being submitted -->
             <input class="form-control border border-black rounded-0 " type="text" name="query" placeholder="Search our collection">
