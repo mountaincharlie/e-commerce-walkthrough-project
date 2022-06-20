@@ -1,19 +1,32 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-from .models import Product
+from .models import Product, Category
 
 
 def all_products(request):
     """
     view for rendering the products.html template with all the products
+    This view also filters the products by different search results,
+    catgeories and orderings
     """
 
-    products = Product.objects.all()
+    products = Product.objects.all()  # gets all the products first
     query = None  # to prevent errors when query is empty
+    categories = None
 
     # handling GET requests
     if request.GET:
+
+        # handling category selections
+        if 'category' in request.GET:
+            # get list of categories and filtering the products which contain these
+            categories = request.GET['category'].split(',')
+            # here we specify 'category' model before 'name' since it has FK relation to 'product'
+            products = products.filter(category__name__in=categories)
+            # to get a list of actual category objects
+            categories = Category.objects.filter(name__in=categories)
+
         # if query (name attribute) exists, we need to get its value
         if 'query' in request.GET:
             query = request.GET['query']
@@ -31,6 +44,7 @@ def all_products(request):
     context = {
         'products': products,
         'product_search': query,
+        'search_categories': categories,
     }
 
     return render(request, 'products/products.html', context)
