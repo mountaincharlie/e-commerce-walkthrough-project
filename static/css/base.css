@@ -66,6 +66,16 @@ body{
     color: white;
 }
 
+
+/* ------------------- category badges */
+
+/* use '!important' when overriding bootstrap styling */
+
+.category-badge > span.badge:hover{
+    background: #212529 !important;
+    color: #fff !important;
+}
+
 /* ------------------- manual black text css (not in BS at the time of CI video recording) */
 
 .text-black {

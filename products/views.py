@@ -28,6 +28,9 @@ def all_products(request):
             if sort_key == 'name':
                 sort_key = 'lower_name'
                 products = products.annotate(lower_name=Lower('name'))
+            if sort_key == 'category':
+                # setting the products to order by category name if category is the sorting criteria
+                sort_key = 'category__name'
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 # check if its decending so you add a '-' before

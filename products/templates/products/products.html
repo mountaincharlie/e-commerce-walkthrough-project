@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+<!-- additional page title section -->
+{% block extra_title %}
+{% endblock %}
+
 <!-- container for the products page header -->
 {% block page_header %}
     <div class="container header-container">
@@ -22,6 +26,12 @@
         <div class="row">
             <div class="col text-center mt-3">
                 <h2 class="logo-font">Products</h2>
+                <!-- looping through search categories and rendering links for them -->
+                {% for category in search_categories %}
+                    <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={{ category.name }}">
+                        <span class="text-black p-2 mx-3 badge badge-white border border-dark rounded-1">{{ category.visible_name }}</span>
+                    </a>
+                {% endfor %}
                 <hr class="w-50 mb-1">
             </div>
         </div>
@@ -29,8 +39,41 @@
         <!-- row containing the 'product-container' column -->
         <div class="row">
             <div class="product-container col-10 offset-1">
-                <!-- row to come back to -->
-                <div class="row mt-1 mb-2"></div>
+
+                <!-- row for sort options [handled with JS code later] -->
+                <div class="row mt-1 mb-2">
+                    <!-- last on screens below md -->
+                    <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
+                        <div class="sort-select-wrapper w-50">
+                            <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-{% if sort_parameters != 'None_None' %}info{% else %}black{% endif %}">
+                                <option value="reset" {% if sort_parameters == 'None_None' %}selected{% endif %}>Sort by: </option>
+                                <option value="price_asc" {% if sort_parameters == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
+                                <option value="price_desc" {% if sort_parameters == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+                                <option value="rating_asc" {% if sort_parameters == 'rating_asc' %}selected{% endif %}>Rating (low to high)</option>
+                                <option value="rating_desc" {% if sort_parameters == 'rating_desc' %}selected{% endif %}>Rating (high to low)</option>
+                                <option value="name_asc" {% if sort_parameters == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+                                <option value="name_desc" {% if sort_parameters == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                                <option value="category_asc" {% if sort_parameters == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
+                                <option value="category_desc" {% if sort_parameters == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- first on screens md and larger -->
+                    <div class="col-12 col-md-6 my-auto oder-md-first">
+                        <!-- return to home button and selected filters -->
+                        <p class="text-muted mt-3 text-center text-md-left">
+                            {% if product_search or search_categories or sort_parameters != 'None_None' %}
+                                <span class="small"><a href="{% url 'products' %}">Products Home</a> | </span>
+                            {% endif %}
+                            {{ products|length }} Products
+                            {% if product_search %}
+                                found for <strong>"{{ product_search }}"</strong>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+
                 <!-- row with a for loop for displaying the product cards on different screen sizes -->
                 <div class="row">
                     {% for product in products %}
@@ -55,6 +98,14 @@
                                     <div class="row">
                                         <div class="col">
                                             <p class="lead mb-0 text-left font-weight-bold">${{ product.price }}</p>
+                                            <!-- displaying the category if it has one and the category is a link to the category itself -->
+                                            {% if product.category %}
+                                            <p class="small mt-1 mb-0">
+                                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+                                                    <i class="fa-solid fa-tag mr-1"></i>{{ product.category.visible_name }}
+                                                </a>
+                                            </p>
+                                            {% endif %}
                                             <!-- display rating if there is one -->
                                             {% if product.rating %}
                                                 <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
