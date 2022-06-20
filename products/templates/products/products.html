@@ -40,7 +40,7 @@
         <div class="row">
             <div class="product-container col-10 offset-1">
 
-                <!-- row for sort options [handled with JS code later] -->
+                <!-- row for sort options dropdown [handled with JS code later] -->
                 <div class="row mt-1 mb-2">
                     <!-- last on screens below md -->
                     <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
@@ -143,4 +143,55 @@
             </div>
         </div>
     </div>
+    <!-- back to page top button -->
+    <div class="btt-button shadow-sm rounded-0 border border-black">
+        <a class="btt-link d-flex h-100" href="">
+            <i class="fa-solid fa-angles-up text-black mx-auto my-auto"></i>
+        </a>
+    </div>
+{% endblock %}
+
+{% block postload_js %}
+    <!-- ensures we append this to the block and not replace any other -->
+    {{ block.super }}
+    <!-- for back to top button -->
+    <script type="text/javascript">
+        $('.btt-link').click(function(e) {
+            window.scrollTo(0,0)
+        })
+    </script>
+
+    <!-- Jquery JS for the sort dropdown feature -->
+    <script type="text/javascript">
+    
+        // capture change event from sort-selector
+        $('#sort-selector').change(function() {
+            var selector = $(this);
+            // url is required for updating the sort/direction options
+            var currentUrl = new URL(window.location);
+
+            // getting the value attribute from the selector
+            var selectedVal = selector.val();
+            // checking first if its the reset
+            if(selectedVal != 'reset'){
+                // get the sort and direction by splitting
+                var sort = selectedVal.split("_")[0];
+                var direction = selectedVal.split("_")[1];
+
+                // replace those params in the url
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+
+                // replacing url which also reloads page and reorders products
+                window.location.replace(currentUrl);
+            } else {
+                // if reset => delete sort and direction
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+
+                // replacing url which also reloads page and reorders products
+                window.location.replace(currentUrl);
+            }
+        })
+    </script>
 {% endblock %}
