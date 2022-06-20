@@ -76,6 +76,23 @@ body{
     color: #fff !important;
 }
 
+
+/* -------------------------------- back to page top button */
+
+.btt-button{
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 10px;
+    right:10px;
+}
+
+/* changes the cursor to a finger pointer */
+.btt-link{
+    cursor:pointer;
+
+}
+
 /* ------------------- manual black text css (not in BS at the time of CI video recording) */
 
 .text-black {
