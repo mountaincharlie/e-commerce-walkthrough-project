@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- additional page title section -->
+{% block extra_title %}
+- shopping bag
+{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <!-- css class to cover over the body background image -->
+    <div class="overlay"></div>
+    
+    <div class="container mb-2">
+        <!-- shopping bag heading -->
+        <div class="row">
+            <div class="col">
+                <hr>
+                <!-- logo-font just makes uppercase (see base.css) -->
+                <h2 class="logo-font mb-4">
+                    Shopping Bag
+                </h2>
+                <hr>
+            </div>
+        </div>
+
+        <!-- table of bag contents -->
+        <div class="row">
+            <div class="col">
+                {% if bag_items %}
+                    <div class="table-responsive rounded"></div>
+                {% else %}
+                    <!-- link back to products -->
+                    <p class="lead mb-5">There are no items in your bag.</p>
+                    <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                        <!-- not actually using this icon style probably -->
+                        <span class="icon">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </span>
+                        <span>Return to the collection</span>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
