@@ -1,5 +1,7 @@
 from decimal import Decimal
 from django.conf import settings
+from django.shortcuts import get_object_or_404
+from products.models import Product
 
 
 def bag_contents(request):
@@ -10,9 +12,25 @@ def bag_contents(request):
     """
 
     # setting up vars
+    # list of dicts containing item_id, quantitiy and the product obj
     bag_items = []
     total = 0
     product_count = 0
+    # get the var if it exists or assign empty dict
+    bag = request.session.get('bag', {})
+
+    # using bag items to calc the total, items and product_count
+    # item_id is the key and quantity is its value
+    for item_id, quantity in bag.items():
+        # get the product
+        product = get_object_or_404(Product, pk=item_id)
+        total += quantity * product.price
+        product_count += quantity
+        bag_items.append({
+            'item_id': item_id,
+            'quantity': quantity,
+            'product': product,
+        })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         # decimal is more accurate than float for rounding
