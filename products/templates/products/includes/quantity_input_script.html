@@ -1,0 +1,83 @@
+<!-- Jquery JS used to handle the quantity plus/minus buttons functionality -->
+<script type="text/javascript">
+
+    /* 
+    * Disables the +/- buttons if they would cause the 
+    * quantity to have a value outside its min/max range. 
+    */
+    function handleEnableDisable(itemId) {
+
+        // CUSTOM - getting min and max attributes instead of manually setting
+        var min_quantity = $(`.id_qty_${itemId}`)[0].getAttribute('min');
+        var max_quantity = $(`.id_qty_${itemId}`)[0].getAttribute('max');
+
+        console.log(max_quantity);
+        
+        // the itemId in the quantity input field makes it unique so we can use template literals to get the element with this specific class (itemID = the product.id from the HTML)
+        var currentValue = parseInt($(`.id_qty_${itemId}`).val());
+
+        // these vars are True/False depending on the currentValue
+        // CUSTOM - checking against min_quantity/max_quantity instead of manual input integers
+        var minusDisabled = (currentValue == min_quantity);
+        var plusDisabled = (currentValue == max_quantity);
+
+        // if either case is True the appropriate button is iven the 'disabled' property
+        $(`.decrement-qty_${itemId}`).prop('disabled', minusDisabled);
+        $(`.increment-qty_${itemId}`).prop('disabled', plusDisabled);
+    }
+
+    // Calling handleEnableDisable function on page load for all '.qty_input'
+    var allQtyInputs = $('.qty_input');
+    for(var i = 0; i < allQtyInputs.length; i++){
+        var itemId = $(allQtyInputs[i]).data('item_id');
+        handleEnableDisable(itemId);
+    }
+
+    // Event listener to check enable/disable every time the input is changed (by buttons, up/down arrow or manual typing)
+    $('.qty_input').change(function() {
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+    });
+
+    // Incrementing the quantity event listener
+    $('.increment-qty').click(function(e) {
+        e.preventDefault();
+
+        // defining the itemId
+        var itemId = $(this).data('item_id');
+
+        // gets the current quantity by getting the closest (looking UP the DOM to parent) '.input-group' element and finds (looking DOWN the DOM at children of the parent) the element with '.qty_input'   
+        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        // 
+        var allQuantityInputs = $(`.input-group-${itemId} input[name='quantity']`);
+        // storing this value as an int
+        var currentValue = parseInt($(closestInput).val());
+
+        // incrementing the value by 1    
+        $(allQuantityInputs).val(currentValue + 1);
+
+        // calls the function to check if any button should be disabled
+        handleEnableDisable(itemId);
+    });
+
+    // Decrementing the quantity event listener
+    $('.decrement-qty').click(function(e) {
+        e.preventDefault();
+        
+        // defining the itemId
+        var itemId = $(this).data('item_id');
+
+        // finding the current quantity value
+        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        // 
+        var allQuantityInputs = $(`.input-group-${itemId} input[name='quantity']`);
+        // storing it as an int
+        var currentValue = parseInt($(closestInput).val());
+
+        // decrementing the value by 1    
+        $(allQuantityInputs).val(currentValue - 1);
+
+        // calls the function to check if any button should be disabled
+        handleEnableDisable(itemId);
+    });
+</script>
