@@ -68,7 +68,39 @@
                                     </td>
                                     <!-- product quantity -->
                                     <td class="py-3 w-25">
-                                        <p class="my-0">{{ item.quantity }}</p>
+                                        <form class="form update-form" method="POST" action="">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <div class="input-group input-group-{{ item.item_id }}">
+                                                    <!-- prepended minus button -->
+                                                    <div class="input-group-prepend">
+                                                        <button class="decrement-qty btn btn-sm btn-black rounded-0 decrement-qty_{{ item.item_id }}" 
+                                                            data-item_id="{{ item.item_id }}">
+                                                            <span>
+                                                                <i class="fas fa-minus fa-sm"></i>
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <!-- the value for quantity, 1 by default/min, max can be a db field or any int -->
+                                                    <input class="form-control form-control-sm qty_input id_qty_{{ item.item_id }}" type="number"
+                                                        name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                                                        data-item_id="{{ item.item_id }}">
+                                                    <!-- appended plus button -->
+                                                    <div class="input-group-append">
+                                                        <button class="increment-qty btn btn-sm btn-black rounded-0 increment-qty_{{ item.item_id }}"
+                                                            data-item_id="{{ item.item_id }}">
+                                                            <span>
+                                                                <i class="fas fa-plus fa-sm"></i>
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!-- update button -->
+                                        <a role="button" class="update-link text-info text-decoration-none" href=""><i class="fa-solid fa-money-bill fa-sm text-info"></i> <small>Update</small></a>
+                                        <!-- remove button -->
+                                        <a role="button" id="remove{{ item.item_id }}" class="remove-item text-danger float-right text-decoration-none" href=""><i class="fa-solid fa-trash-can fa-sm text-danger"></i> <small>Remove</small></a>
                                     </td>
                                     <!-- subtotal - USING PRICE FOR NOW -->
                                     <td class="py-3">
@@ -132,4 +164,40 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block postload_js %}
+{{ block.super }}
+<!-- JS for handling the quantity +/- buttons -->
+{% include 'products/includes/quantity_input_script.html' %}
+
+<!-- JS for handling the update and remove buttons -->
+<script type="text/javascript">
+    // click event listener for updating the quantity
+    // calls the form by its class '.update-form' and stores it in a var and then calls the submit function on it
+    $('.update-link').click(function(e) {
+        var form = $(this).prev('.update-form');
+        form.submit();
+    })
+
+    // click event listener for removing the item
+    $('.remove-item').click(function(e) {
+        // csrf_token as a str var
+        var csrfToken = "{{ csrf_token }}";
+        // getting second part of 'this' which is the item's id
+        var itemId = $(this).attr('id').split('remove_')[1];
+        // URL TO BE CREATED IN FUTURE
+        var url = `/bag/remove/${itemId}`;
+        // data obj to send to server
+        var data = {
+            'csrfmiddlewaretoken': csrfToken,
+        };
+
+        // posting to the server
+        $.post(url, data)
+         .done(function() {
+            location.reload();
+         });
+    })
+</script>
 {% endblock %}

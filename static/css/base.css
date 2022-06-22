@@ -94,9 +94,10 @@ body{
 }
 
 /* changes the cursor to a finger pointer */
-.btt-link{
+.btt-link,
+.update-link,
+.remove-link {
     cursor:pointer;
-
 }
 
 /* ------------------- manual black text css (not in BS at the time of CI video recording) */
