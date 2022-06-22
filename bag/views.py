@@ -38,6 +38,6 @@ def add_to_bag(request, item_id):
     request.session['bag'] = bag
 
     # to check the session thing works
-    print(request.session['bag'])
+    # print(request.session['bag'])
 
     return redirect(redirect_url)
