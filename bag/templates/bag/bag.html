@@ -34,6 +34,7 @@
         <!-- table of bag contents -->
         <div class="row">
             <div class="col">
+                <!-- if the bag contains anything -->
                 {% if bag_items %}
                     <div class="table-responsive rounded">
                         <!-- getting the bag_items var from the contexts file -->
@@ -68,7 +69,7 @@
                                     </td>
                                     <!-- product quantity -->
                                     <td class="py-3 w-25">
-                                        <form class="form update-form" method="POST" action="">
+                                        <form class="form update-form" method="POST" action="{% url 'adjust_bag' item.item_id %}">
                                             {% csrf_token %}
                                             <div class="form-group">
                                                 <div class="input-group input-group-{{ item.item_id }}">
@@ -97,10 +98,10 @@
                                                 </div>
                                             </div>
                                         </form>
-                                        <!-- update button -->
-                                        <a role="button" class="update-link text-info text-decoration-none" href=""><i class="fa-solid fa-money-bill fa-sm text-info"></i> <small>Update</small></a>
+                                        <!-- update button controlled by JS to submit form -->
+                                        <a role="button" class="update-link text-info text-decoration-none"><i class="fa-solid fa-money-bill fa-sm text-info"></i> <small>Update</small></a>
                                         <!-- remove button -->
-                                        <a role="button" id="remove{{ item.item_id }}" class="remove-item text-danger float-right text-decoration-none" href=""><i class="fa-solid fa-trash-can fa-sm text-danger"></i> <small>Remove</small></a>
+                                        <a role="button" id="remove_{{ item.item_id }}" class="remove-item text-danger float-right text-decoration-none"><i class="fa-solid fa-trash-can fa-sm text-danger"></i> <small>Remove</small></a>
                                     </td>
                                     <!-- subtotal - USING PRICE FOR NOW -->
                                     <td class="py-3">
@@ -171,7 +172,7 @@
 <!-- JS for handling the quantity +/- buttons -->
 {% include 'products/includes/quantity_input_script.html' %}
 
-<!-- JS for handling the update and remove buttons -->
+<!-- JS for handling the update and remove buttons and form submission -->
 <script type="text/javascript">
     // click event listener for updating the quantity
     // calls the form by its class '.update-form' and stores it in a var and then calls the submit function on it
@@ -187,7 +188,7 @@
         // getting second part of 'this' which is the item's id
         var itemId = $(this).attr('id').split('remove_')[1];
         // URL TO BE CREATED IN FUTURE
-        var url = `/bag/remove/${itemId}`;
+        var url = `/bag/remove/${itemId}/`;
         // data obj to send to server
         var data = {
             'csrfmiddlewaretoken': csrfToken,
