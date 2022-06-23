@@ -1,0 +1,18 @@
+<!-- custom-toast is a custom class and the frist 2 divs within the main div are custom for the walkthrough -->
+
+<div class="toast custom-toast rounded-o border-top-0" data-autohide="false">
+    <div class="arrow-up arrow-{% block arrow_type %}{% endblock %}"></div>
+    <div class="w-100 toast-capper bg-{% block bg_type %}{% endblock %}"></div>
+    <!-- header -->
+    <div class="toast-header bg-white text-dark">
+        <strong class="mr-auto">{% block toast_type %}{% endblock %}!</strong>
+        <!-- button for user to close -->
+        <button type="button" class="ml-2 mb-1 close text-dark" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <!-- body -->
+    <div class="toast-body bg-white">
+        {{ message }}
+    </div>
+</div>
