@@ -74,7 +74,25 @@
 
         <!-- if statement for displaying any django messages -->
         {% if messages %}
-            <div class="messages-container"></div>
+            <div class="messages-container">
+                {% for message in messages %}
+                    {% with message.level as level %}
+                        <!-- django level 40 => error -->
+                        {% if level == 40 %}
+                            {% include 'includes/toasts/toast_error.html' %}
+                        <!-- django level 30 => warning -->
+                        {% elif level == 30 %}
+                            {% include 'includes/toasts/toast_warning.html' %}
+                        <!-- django level 25 => success -->
+                        {% elif level == 25 %}
+                            {% include 'includes/toasts/toast_success.html' %}
+                        <!-- default to info -->
+                        {% else %}
+                            {% include 'includes/toasts/toast_info.html' %}
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            </div>
         {% endif %}
 
         {% block page_header %}
@@ -84,6 +102,11 @@
         {% endblock %}
 
         {% block postload_js %}
+        <!-- JS for showing any toasts on any page load -->
+        <script type="text/javascript">
+            // calling the toast method from Bootstrap with the option 'show'
+            $('.toast').toast('show');
+        </script>
         {% endblock %}
 
     </body>
