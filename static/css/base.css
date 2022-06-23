@@ -100,6 +100,25 @@ body{
     cursor:pointer;
 }
 
+
+/* -------------------------------- toasts/messages */
+
+/* positioning the toastsa and keeping them on top layer */
+.messages-container{
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 999999999;
+}
+
+.custom-toast{
+    overflow: visible;
+}
+
+.toast-capper{
+    height: 2px;
+}
+
 /* ------------------- manual black text css (not in BS at the time of CI video recording) */
 
 .text-black {
