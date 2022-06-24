@@ -12,7 +12,9 @@
         </button>
     </div>
     <!-- body -->
+    {% block toast_body %}
     <div class="toast-body bg-white">
         {{ message }}
     </div>
+    {% endblock %}
 </div>
