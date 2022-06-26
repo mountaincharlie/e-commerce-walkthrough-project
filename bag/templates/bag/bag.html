@@ -56,13 +56,18 @@
                                 <tr>
                                     <!-- product image -->
                                     <td class="p-3 w-25">
-                                        <img class="img-fluid rounded" src="{{ item.product.image.url }}">
+                                        <a class="text-black text-decoration-none" href="{% url 'product_details' item.item_id %}">
+                                            <img class="img-fluid rounded" src="{{ item.product.image.url }}">
+                                        </a>
                                     </td>
                                     <!-- product name and sku -->
                                     <td class="py-3">
-                                        <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                                        <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
+                                        <a class="text-black text-decoration-none" href="{% url 'product_details' item.item_id %}">
+                                            <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                                            <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
+                                        </a>
                                     </td>
+
                                     <!-- product price -->
                                     <td class="py-3">
                                         <p class="my-0">${{ item.product.price }}</p>
