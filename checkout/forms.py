@@ -22,7 +22,6 @@ class OrderForm(forms.ModelForm):
             'county',
         )
 
-
     def __init__(self, *args, **kwargs):
         """
         Overriding the init method inorder to make the form very customizable
@@ -56,7 +55,7 @@ class OrderForm(forms.ModelForm):
             if self.fields[field].required:
                 placeholder = f'{placeholders[field]} *'
             else:
-                placeholder =placeholders[field]
+                placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
             self.fields[field].label = False
