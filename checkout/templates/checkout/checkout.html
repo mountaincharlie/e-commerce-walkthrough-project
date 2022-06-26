@@ -170,3 +170,14 @@
     </div>
 
 {% endblock %}
+
+
+{% block postload_js %}
+    {{ block.super }}
+    <!-- using template filter since cant render django template vars in external js -->
+    <!-- these template vars are in checkout view function context dict -->
+    <!-- they will have the provided ids -->
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+{% endblock %}
