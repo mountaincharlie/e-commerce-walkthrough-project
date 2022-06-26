@@ -35,7 +35,7 @@ def bag_contents(request):
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         # decimal is more accurate than float for rounding
-        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE)
+        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
 
         # to show the user how much more they need to spend for free delivery
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
