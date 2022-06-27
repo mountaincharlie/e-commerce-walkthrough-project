@@ -43,7 +43,9 @@ class Order(models.Model):
         Accounts for delivery cost by checking if the threshold has been reached
         """
 
-        self.order_total = self.orderitems.aggregate(Sum('orderitem_total'))['orderitem_total__sum']
+        self.order_total = self.orderitems.aggregate(
+            Sum('orderitem_total')
+            )['orderitem_total__sum'] or 0
 
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
             self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
@@ -65,7 +67,7 @@ class Order(models.Model):
 
     def __str__(self):
         """ Returns the order_number """
-        return self.order_numer
+        return self.order_number
 
 
 class OrderItem(models.Model):
