@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 from bag.contexts import bag_contents
@@ -7,6 +8,32 @@ from products.models import Product
 from .models import Order
 from .models import OrderItem
 import stripe
+import json
+
+
+@require_POST
+def cache_checkout_data(request):
+    """
+    view for checking if info-save was chosen
+    -gets the payment_intent id
+    -sets up stripe with api key
+    -call the modify method on the PaymentIntent with metadata for
+    username, if they wanted to save info and a json dump of the entire bag
+    """
+    try:
+        payment_intent_id = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(payment_intent_id, metadata={
+            'bag': json.dumps(request.session.get('bag', {})),
+            'save_info': request.POST.get('save_info'),
+            'username': request.user,
+        })
+
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Sorry, your payment could not be processed \
+            at this time please try again later')
+        return HttpResponse(content=e, status=400)
 
 
 def checkout(request):
