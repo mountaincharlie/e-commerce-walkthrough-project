@@ -1,8 +1,11 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.conf import settings
 from bag.contexts import bag_contents
 from .forms import OrderForm
+from products.models import Product
+from .models import Order
+from .models import OrderItem
 import stripe
 
 
@@ -21,25 +24,82 @@ def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
-    bag = request.session.get('bag', {})
+    # checking if the method is POST
+    if request.method == 'POST':
+        bag = request.session.get('bag', {})
 
-    if not bag:
-        messages.error(request, 'There are currently no items in your bag')
-        return redirect(reverse('products'))
+        # dict of data from the form
+        form_data = {
+            'full_name': request.POST['full_name'],
+            'email': request.POST['email'],
+            'phone_number': request.POST['phone_number'],
+            'country': request.POST['country'],
+            'postcode': request.POST['postcode'],
+            'town_or_city': request.POST['town_or_city'],
+            'street_address_1': request.POST['street_address_1'],
+            'street_address_2': request.POST['street_address_2'],
+            'county': request.POST['county'],
+        }
+        # creating the form instance
+        order_form = OrderForm(form_data)
+        # saving the form if its valid
+        if order_form.is_valid():
+            order = order_form.save()
+            # iterating through the items to create each item in the line
+            # very simialr to what we do in the context processor (make it a
+            # function to be called?)
+            # since bag is a dict with item_id and quantity
+            for item_id, quantity in bag.items():
+                try:
+                    # get the item_id from the bag
+                    product = Product.objects.get(id=item_id)
+                    order_item = OrderItem(
+                            order=order,
+                            product=product,
+                            quantity=quantity,
+                        )
+                    order_item.save()
+                except Product.DoesNotExist:
+                    # displaying error msg, deleting the order and redirecting
+                    # to the bag
+                    messages.error(request, (
+                        'One of your bag items was not found in our database.'
+                        'Please get in contact for assistance.'
+                        ))
+                    order.delete()
+                    return redirect(reverse('view_bag'))
 
-    current_bag = bag_contents(request)
-    grand_total = current_bag['grand_total']
-    stripe_total = round(grand_total * 100)  # stripe needs it as an int
-    stripe.api_key = stripe_secret_key
-    # creating the PaymentIntent (dict of details about the payment)
-    payment_intent = stripe.PaymentIntent.create(
-        amount=stripe_total,
-        currency=settings.STRIPE_CURRENCY,
-    )
+            # checking if the save info selection was made and redirecting
+            request.session['save-info'] = 'save-info' in request.POST
+            return redirect(reverse(
+                'checkout_success', args=[order.order_number]
+                ))
+        else:
+            # error message that the form isnt valid (they're redirected at
+            # the view bottom)
+            messages.error(request, (
+                'There was an error with your order form.'
+                ))
 
-    # print(payment_intent)
+    # for GET method (getting the form and vars to use on the checkout page)
+    else:
+        bag = request.session.get('bag', {})
 
-    order_form = OrderForm()
+        if not bag:
+            messages.error(request, 'There are currently no items in your bag')
+            return redirect(reverse('products'))
+
+        current_bag = bag_contents(request)
+        grand_total = current_bag['grand_total']
+        stripe_total = round(grand_total * 100)  # stripe needs it as an int
+        stripe.api_key = stripe_secret_key
+        # creating the PaymentIntent (dict of details about the payment)
+        payment_intent = stripe.PaymentIntent.create(
+            amount=stripe_total,
+            currency=settings.STRIPE_CURRENCY,
+        )
+
+        order_form = OrderForm()
 
     # just a message for if you have to set the var every time
     if not stripe_public_key:
@@ -52,6 +112,33 @@ def checkout(request):
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': payment_intent.client_secret,
+    }
+
+    return render(request, template, context)
+
+
+def checkout_success(request, order_number):
+    """
+    view to handle successful checkouts
+    -takes in the request an the order_number for the order just created
+    -checks if the user wanted to save their info (WILL BE USED
+    AFTER USER PROFILES HAVE BEEN SETUP)
+    -gets the order by its number
+    -displays success msg with the order number
+    -delete the bag fro mthe session
+    -set template and context
+    -return render
+    """
+    save_info = request.session.get('save-info')
+    order = get_object_or_404(Order, order_number=order_number)
+    messages.success(request, f'Your order was successful. Order number: {order_number}. A confirmation email will be sent to {order.email}')
+
+    if 'bag' in request.session:
+        del request.session['bag']
+
+    template = 'checkout/checkout_success.html'
+    context = {
+        'order': order,
     }
 
     return render(request, template, context)
