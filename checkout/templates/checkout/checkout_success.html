@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- additional page title section -->
+{% block extra_title %}
+- checkout success
+{% endblock %}
+
+<!-- for all the custom css for this page -->
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <!-- css class to cover over the body background image -->
+    <div class="overlay"></div>
+    
+    <div class="container">
+        <!-- shopping bag heading -->
+        <div class="row">
+            <div class="col">
+                <hr>
+                <!-- logo-font just makes uppercase (see base.css) -->
+                <h2 class="logo-font mb-4">
+                    Thank You For Your Order
+                </h2>
+                <hr>
+                <!-- info about their order -->
+                <p class="text-black">Your order information is below and a confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
+            </div>
+        </div>
+
+        <!-- order summary -->
+        <div class="row">
+            <div class="col-12 col-lg-7"></div>
+        </div>
+
+        <!-- button to check out latest deals -->
+        <div class="row">
+            <div class="col-12 col-lg-7 text-right">
+                <a href="{% url 'products' %}?category=new_arrivals,deals,clearance" class="btn btn-black rounded-0" role="button">
+                    <span class="mr-2">
+                        <i class="fas fa-gifts"></i>
+                    </span>
+                    <span class="text-uppercase">
+                        Check out our latest deals!
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
