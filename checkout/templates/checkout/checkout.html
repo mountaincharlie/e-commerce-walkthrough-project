@@ -23,6 +23,7 @@
     <!-- css class to cover over the body background image -->
     <div class="overlay"></div>
     
+    <!-- main checkout info and functionality -->
     <div class="container">
         <!-- shopping bag heading -->
         <div class="row">
@@ -167,6 +168,17 @@
                 </form>
             </div>
         </div>
+    </div>
+
+    <!-- loading overlay div for while orders are being processed -->
+    <div id="loading-overlay">
+        <!-- has trasnparent blue overlay and spinner -->
+        <h1 class="text-light logo-font loading-spinner">
+            <span>
+                <!-- spinning icon settings from FA -->
+                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+            </span>
+        </h1>
     </div>
 
 {% endblock %}

@@ -75,12 +75,14 @@ card.addEventListener('change', function(ev) {
     -the default action (POST) is prevented
     -disables the card element and submit button to prevent mutiple
     submissions
+    -calls the fadeToggle on 'payment-form' and 'loading-overlay'
     -uses stripe's confirmCardPayment method to securely send
     the card details to stripe with the clientSecret
     -then checks if there is an error
     -if there is, it gets the card-errors div, creates
     the error message and then puts it in the div
-    -then it turns off the disable on the card element and submit
+    -then it calls the fadeToggle on 'payment-form' and 'loading-overlay'
+    and turns off the disable on the card element and submit
     button so the user could correct the error and when the submit
     button is clicked again, the Ev Listener would eb called again
     -if there are no errors, the paymentIntent's status is set to
@@ -93,6 +95,9 @@ form.addEventListener('submit', function(ev) {
 
     card.update({ 'disabled': true});
     $('#submit-button').attr('disabled', true);
+
+    $('#payment-form').fadeToggle(100);
+    $('#loading-overlay').fadeToggle(100);
 
     stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -111,6 +116,9 @@ form.addEventListener('submit', function(ev) {
                 <span>${result.error.message}</span>`;
             
             $(errorDiv).html(error_msg_html);
+
+            $('#payment-form').fadeToggle(100);
+            $('#loading-overlay').fadeToggle(100);
 
             card.update({ 'disabled': false});
             $('#submit-button').attr('disabled', false);
