@@ -71,7 +71,11 @@ def checkout(request):
         order_form = OrderForm(form_data)
         # saving the form if its valid
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
+            payment_intent_id = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = payment_intent_id
+            order.original_bag = json.dumps(bag)
+            order.save()
             # iterating through the items to create each item in the line
             # very simialr to what we do in the context processor (make it a
             # function to be called?)

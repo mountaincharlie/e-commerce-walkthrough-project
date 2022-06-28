@@ -136,6 +136,8 @@
                         <div class="mb-3" id="card-element"></div>
                         <!-- div for displaying any form errors -->
                         <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+                        <!-- hidden input with client_secret to pass to the view -->
+                        <input type="hidden" value="{{ client_secret }}" name="client_secret">
                     </fieldset>
 
                     <!-- form submit button -->
