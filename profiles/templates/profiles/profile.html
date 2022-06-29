@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- additional page title section -->
+{% block extra_title %}
+- profile
+{% endblock %}
+
+<!-- for all the custom css for this page -->
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <!-- css class to cover over the body background image -->
+    <div class="overlay"></div>
+    
+    <!-- main checkout info and functionality -->
+    <div class="container">
+        <!-- shopping bag heading -->
+        <div class="row">
+            <div class="col">
+                <hr>
+                <!-- logo-font just makes uppercase (see base.css) -->
+                <h2 class="logo-font mb-4">
+                    My Profile
+                </h2>
+                <hr>
+            </div>
+        </div>
+{% endblock %}
