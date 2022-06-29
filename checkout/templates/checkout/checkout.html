@@ -105,13 +105,13 @@
                         <!-- user's delivery info -->
                         <legend class="fieldset-label small text-black px-2 w-auto">Delivery</legend>
                         {{ order_form.phone_number | as_crispy_field }}
-                        {{ order_form.country | as_crispy_field }}
-                        {{ order_form.postcode | as_crispy_field }}
-                        {{ order_form.town_or_city | as_crispy_field }}
                         {{ order_form.street_address_1 | as_crispy_field }}
                         {{ order_form.street_address_2 | as_crispy_field }}
+                        {{ order_form.town_or_city | as_crispy_field }}
                         {{ order_form.county | as_crispy_field }}
-
+                        {{ order_form.postcode | as_crispy_field }}
+                        {{ order_form.country | as_crispy_field }}
+                        
                         <!-- inline checkbox option to save details to profile or option to create an account or login -->
                         <div class="form-check form-check-inline float-right mr-0">
                             <!-- pre-checked option to save infor if logged in -->
