@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from .models import Order, OrderItem
 from products.models import Product
+from profiles.models import UserProfile
 import json
 import time
 
@@ -44,6 +45,22 @@ class StripeWH_Handler:
             if value == '':
                 shipping_details.address[field] = None
 
+        # update the user profile
+        profile = None  # so that it still works for anonymous users
+        username = intent.metadata.username
+        # checking if the user is authenticated (can use request.user.is_authenticated aswell)
+        if username != 'AnonymousUser':
+            profile = UserProfile.objects.get(user__username=username)
+            if save_info:
+                profile.default_phone_number = shipping_details.phone
+                profile.default_country = shipping_details.address.country
+                profile.default_postcode = shipping_details.address.postal_code
+                profile.default_town_or_city = shipping_details.address.city
+                profile.default_street_address_1 = shipping_details.address.line1
+                profile.default_street_address_2 = shipping_details.address.line2
+                profile.default_county = shipping_details.address.state
+                profile.save()
+
         # ---- checking if the order already exists (was successful)
         order_exists = False
         attempt = 1
@@ -67,7 +84,7 @@ class StripeWH_Handler:
                 order_exists = True
                 # breaking from the loop if found
                 break
-
+            # if the order hasnt been found yet/doesnt exist
             except Order.DoesNotExist:
                 # incrementing attempts if not found yet
                 attempt += 1
@@ -83,6 +100,7 @@ class StripeWH_Handler:
                 # creating the order
                 order = Order.objects.create(
                     full_name=shipping_details.name,
+                    user_profile=profile,
                     email=billing_details.email,
                     phone_number=shipping_details.phone,
                     country=shipping_details.address.country,
@@ -94,7 +112,7 @@ class StripeWH_Handler:
                     original_bag=bag,
                     stripe_pid=payment_intent_id,
                 )
-                # copied from views
+                # copied from views DOES THIS WORK?
                 for item_id, quantity in json.loads(bag).items():
                     # get the item_id from the bag
                     product = Product.objects.get(id=item_id)
