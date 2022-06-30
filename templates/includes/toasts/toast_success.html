@@ -14,8 +14,8 @@
                 <hr class="mt-1 mb-3">
             </div>
         </div>
-        <!-- only rendering shopping bag items if there is a grand total -->
-        {% if grand_total %}
+        <!-- only rendering shopping bag items if there is a grand total and not on the profile page-->
+        {% if grand_total and not on_profile_page %}
             <p class="logo-font bg-white tetx-black py-1">Your Bag ({{ product_count }} items)</p>
             <!-- styled in base.css to prevent the toast being too long -->
             <div class="bag-notification-wrapper">

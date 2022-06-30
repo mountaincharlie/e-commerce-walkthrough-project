@@ -1,0 +1,19 @@
+/* ------------- form fields */
+
+#profile-update-form .form-control{
+    color: #000;
+}
+
+#profile-update-form input::placeholder{
+    color: #b6b2b2;
+}
+
+/* making the country field's lack by default apart from first */
+#id_default_country,
+#id_default_country option:not(:first-child) {
+    color:#000;
+}
+
+#id_default_country option:first-child {
+    color: #b6b2b2;
+}
