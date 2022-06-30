@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from .models import UserProfile
 from .forms import UserProfileForm
+from checkout.models import Order
 
 
 def profile(request):
@@ -18,7 +19,9 @@ def profile(request):
             form.save()
             messages.success(request, 'Profile updated succesfully!')
         else:
-            messages.error(request, 'Your details could not be updated right now. Please try again later')
+            messages.error(
+                request, 'Your details could not be updated right now. Please try again later'
+                )
             form = UserProfileForm(instance=user_profile)
 
     # form with the user's details pre-populated
@@ -32,6 +35,31 @@ def profile(request):
         'form': form,
         'orders': orders,
         'on_profile_page': True,
+    }
+
+    return render(request, template, context)
+
+
+def order_history(request, order_number):
+    """
+    view for displaying the order history for a particular
+    order by its order_number
+    """
+
+    # gets the order
+    order = get_object_or_404(Order, order_number=order_number)
+
+    # informing the user whats happening
+    messages.info(request, (
+        f'This is the confirmation details of your past order, order_number: {order_number}'
+        f'A confirmation email was sent on {order.date}'
+    ))
+
+    # uses the checkout_success template to display the info
+    template = 'checkout/checkout_success.html'
+    context = {
+        'order': order,
+        'from_profile': True,  # to confirm they got to the url from the profile page
     }
 
     return render(request, template, context)

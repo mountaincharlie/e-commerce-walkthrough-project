@@ -45,10 +45,59 @@
                     <button class="btn btn-black rounded-0 text-uppercase float-right">Update Information</button>
                 </form>
             </div>
+            {% if orders %}
             <div class="col-12 col-lg-6">
                 <p class="text-muted font-weight-bold">Order History</p>
-                {{ orders }}
+                <div class="order-history table-responsive">
+                    <table class="table table-sm table-borderless">
+                        <thead>
+                            <tr>
+                                <th>Order Number</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Order Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                                <tr>
+                                    <!-- order number is a link to the full details -->
+                                    <td>
+                                        <!-- link to the order_history url to be created, being passed order_number -->
+                                        <!-- title => what you can see when you hover over it -->
+                                        <!-- use truncatechars filter to only display a certain number of characters -->
+                                        <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">
+                                            {{ order.order_number|truncatechars:6 }}
+                                        </a>
+                                    </td>
+                                    <!-- order date -->
+                                    <td>{{ order.date }}</td>
+                                    <!-- unordered list of the items from the order -->
+                                    <td>
+                                        <ul class="list-unstyled">
+                                            {% for item in order.orderitems.all %}
+                                            <li class="small">
+                                                {{ item.product.name }} x{{ item.quantity }}
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
+                                    <!-- grand total of the order -->
+                                    <td>${{ order.grand_total }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
+            {% else %}
+            <div class="col-12 col-lg-6">
+                <p class="text-muted font-weight-bold">Order History</p>
+                <p class="text-muted">
+                    No orders placed yet
+                </p>
+            </div>
+            {% endif %}
         </div>
 {% endblock %}
 
