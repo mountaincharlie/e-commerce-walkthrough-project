@@ -23,9 +23,9 @@ def cache_checkout_data(request):
     username, if they wanted to save info and a json dump of the entire bag
     """
     try:
-        payment_intent_id = request.POST.get('client_secret').split('_secret')[0]
+        pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
-        stripe.PaymentIntent.modify(payment_intent_id, metadata={
+        stripe.PaymentIntent.modify(pid, metadata={
             'bag': json.dumps(request.session.get('bag', {})),
             'save_info': request.POST.get('save_info'),
             'username': request.user,
@@ -74,22 +74,22 @@ def checkout(request):
         # saving the form if its valid
         if order_form.is_valid():
             order = order_form.save(commit=False)
-            payment_intent_id = request.POST.get('client_secret').split('_secret')[0]
-            order.stripe_pid = payment_intent_id
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             order.save()
             # iterating through the items to create each item in the line
             # very simialr to what we do in the context processor (make it a
             # function to be called?)
             # since bag is a dict with item_id and quantity
-            for item_id, quantity in bag.items():
+            for item_id, item_data in bag.items():
                 try:
                     # get the item_id from the bag
                     product = Product.objects.get(id=item_id)
                     order_item = OrderItem(
                             order=order,
                             product=product,
-                            quantity=quantity,
+                            quantity=item_data,
                         )
                     order_item.save()
                 except Product.DoesNotExist:
@@ -103,7 +103,7 @@ def checkout(request):
                     return redirect(reverse('view_bag'))
 
             # checking if the save info selection was made and redirecting
-            request.session['save-info'] = 'save-info' in request.POST
+            request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse(
                 'checkout_success', args=[order.order_number]
                 ))
@@ -180,7 +180,7 @@ def checkout_success(request, order_number):
     -set template and context
     -return render
     """
-    save_info = request.session.get('save-info')
+    save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
     # checking if the user is authenticated before ataching the users profile to the order
