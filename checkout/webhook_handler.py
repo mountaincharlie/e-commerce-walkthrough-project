@@ -1,4 +1,7 @@
 from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
 from .models import Order, OrderItem
 from products.models import Product
 from profiles.models import UserProfile
@@ -13,6 +16,24 @@ class StripeWH_Handler:
     def __init__(self, request):
         """ sets up the class """
         self.request = request
+
+    def _send_confirmation_email(self, order):
+        """ Sends the user the order confirmation email """
+        customer_email = order.email
+        # rendering the txt files to strings and passing a dict lie a context
+        subject = render_to_string(
+            'checkout/confirmation_emails/confirmation_email_subject.txt',
+            {'order': order})
+        body = render_to_string(
+            'checkout/confirmation_emails/confirmation_email_body.txt',
+            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+        # sending the email
+        send_mail(
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,  # from
+            [customer_email]  # to
+        )
 
     def handle_event(self, event):
         """
@@ -31,7 +52,8 @@ class StripeWH_Handler:
         """
         # getting the intent and extracting the variables we need from it
         intent = event.data.object
-        payment_intent_id = intent.payment_intent_id
+        # pid = payment_intent_id
+        pid = intent.id
         bag = intent.metadata.bag
         save_info = intent.metadata.save_info
 
@@ -66,6 +88,7 @@ class StripeWH_Handler:
         attempt = 1
         while attempt <= 5:
             try:
+                print('getting the order')
                 # finding the order
                 order = Order.objects.get(
                     full_name__iexact=shipping_details.name,
@@ -79,7 +102,7 @@ class StripeWH_Handler:
                     county__iexact=shipping_details.address.state,
                     grand_total=grand_total,
                     original_bag=bag,
-                    stripe_pid=payment_intent_id,
+                    stripe_pid=pid,
                 )
                 order_exists = True
                 # breaking from the loop if found
@@ -90,6 +113,9 @@ class StripeWH_Handler:
                 attempt += 1
                 time.sleep(1)
         if order_exists:
+            # send confirmation email
+            print('SENDING CONFIRMATION EMAIL')
+            self._send_confirmation_email(order)
             # http response
             return HttpResponse(
                 content=f'Webhook recieved: {event["type"]} | SUCCESS: Verified order already in database',
@@ -97,6 +123,7 @@ class StripeWH_Handler:
         else:
             order = None
             try:
+                print('creating the order')
                 # creating the order
                 order = Order.objects.create(
                     full_name=shipping_details.name,
@@ -110,16 +137,16 @@ class StripeWH_Handler:
                     street_address_2=shipping_details.address.line2,
                     county=shipping_details.address.state,
                     original_bag=bag,
-                    stripe_pid=payment_intent_id,
+                    stripe_pid=pid,
                 )
                 # copied from views DOES THIS WORK?
-                for item_id, quantity in json.loads(bag).items():
+                for item_id, item_data in json.loads(bag).items():
                     # get the item_id from the bag
                     product = Product.objects.get(id=item_id)
                     order_item = OrderItem(
                         order=order,
                         product=product,
-                        quantity=quantity,
+                        quantity=item_data,
                     )
                     order_item.save()
             except Exception as e:
@@ -128,7 +155,9 @@ class StripeWH_Handler:
                     order.delete()
                 return HttpResponse(
                     content=f'Webhook recieved: {event["type"]} | ERROR: {e}', status=500)
-
+        # send confirmation email
+        print('SENDING CONFIRMATION EMAIL')
+        self._send_confirmation_email(order)
         return HttpResponse(
             content=f'Webhook recieved: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)
