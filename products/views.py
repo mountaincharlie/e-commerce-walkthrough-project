@@ -5,6 +5,8 @@ from django.db.models.functions import Lower
 from .models import Product, Category
 from .forms import ProductForm
 
+from bag.views import remove_from_bag
+
 
 def all_products(request):
     """
@@ -102,9 +104,9 @@ def add_product(request):
         # FILEs is for capturing any image that may be added
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Product successfully added')
-            return redirect(reverse('add_product'))
+            product = form.save()
+            messages.success(request, f'{product.name} successfully added')
+            return redirect(reverse('product_details', args=[product.id]))
         else:
             messages.error(request, 'Failed to add product. Please ensure your form is correctly filled out')
     else:
@@ -148,3 +150,14 @@ def edit_product(request, product_id):
     }
 
     return render(request, template, context)
+
+
+def delete_product(request, product_id):
+    """
+    view for the admin to delete products from the database
+    """
+
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    messages.success(request, f'{product.name} was successfully deleted')
+    return redirect(reverse('products'))
