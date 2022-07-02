@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Product, Category
@@ -94,11 +95,17 @@ def product_details(request, product_id):
     return render(request, 'products/product_details.html', context)
 
 
+@login_required
 def add_product(request):
     """
     view for the admin to add products to the database
     passes the ProductForm into the add_product.html template
     """
+
+    # checking if super user, else redirect
+    if not request.user.is_superuser:
+        messages.error(request, 'Only admins have access to this functionality')
+        return redirect(reverse('home'))
 
     if request.method == 'POST':
         # FILEs is for capturing any image that may be added
@@ -120,12 +127,17 @@ def add_product(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_product(request, product_id):
     """
     view for the admin to edit products in the database
     passes the product's filled ProductForm into the edit_product.html
     template
     """
+    # checking if super user, else redirect
+    if not request.user.is_superuser:
+        messages.error(request, 'Only admins have access to this functionality')
+        return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
 
@@ -152,10 +164,15 @@ def edit_product(request, product_id):
     return render(request, template, context)
 
 
+@login_required
 def delete_product(request, product_id):
     """
     view for the admin to delete products from the database
     """
+    # checking if super user, else redirect
+    if not request.user.is_superuser:
+        messages.error(request, 'Only admins have access to this functionality')
+        return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
