@@ -112,6 +112,13 @@
                                             {% else %}
                                                 <small class="text-muted">No Rating</small>
                                             {% endif %}
+                                            <!-- displaying edit/delete buttons only if the user is a superuser -->
+                                            {% if request.user.is_superuser %}
+                                                <small class="ml-3">
+                                                    <a role="button" class="text-info" href="{% url 'edit_product' product.id %}">Edit</a>
+                                                    <a role="button" class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+                                                </small>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
