@@ -116,3 +116,35 @@ def add_product(request):
     }
 
     return render(request, template, context)
+
+
+def edit_product(request, product_id):
+    """
+    view for the admin to edit products in the database
+    passes the product's filled ProductForm into the edit_product.html
+    template
+    """
+
+    product = get_object_or_404(Product, pk=product_id)
+
+    if request.method == 'POST':
+        # instance is required when talking about a specific existsing product
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'{product.name} successfully updated')
+            return redirect(reverse('product_details', args=[product.id]))
+        else:
+            messages.error(request, f'{product.name} could not be updated. Please ensure that your form is correct')
+    else:
+        form = ProductForm(instance=product)
+        # informing the user that theyre editing a product
+        messages.info(request, f'You are editing {product.name}')
+
+    template = 'products/edit_product.html'
+    context = {
+        'form': form,
+        'product': product,
+    }
+
+    return render(request, template, context)
