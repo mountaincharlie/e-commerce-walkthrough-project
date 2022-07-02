@@ -56,7 +56,7 @@
                                 <tr>
                                     <!-- product image -->
                                     <td class="p-3 w-25">
-                                        {% if product.image %}
+                                        {% if item.product.image %}
                                             <a class="text-black text-decoration-none" href="{% url 'product_details' item.item_id %}">
                                                 <img class="img-fluid rounded" src="{{ item.product.image.url }}">
                                             </a>
