@@ -42,7 +42,6 @@ def all_products(request):
             # ordering the products
             products = products.order_by(sort_key)
 
-
         # handling category selections
         if 'category' in request.GET:
             # get list of categories and filtering the products which contain these
@@ -99,7 +98,18 @@ def add_product(request):
     passes the ProductForm into the add_product.html template
     """
 
-    form = ProductForm()
+    if request.method == 'POST':
+        # FILEs is for capturing any image that may be added
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Product successfully added')
+            return redirect(reverse('add_product'))
+        else:
+            messages.error(request, 'Failed to add product. Please ensure your form is correctly filled out')
+    else:
+        form = ProductForm()
+
     template = 'products/add_product.html'
     context = {
         'form': form,
