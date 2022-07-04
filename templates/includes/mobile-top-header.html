@@ -61,7 +61,7 @@
 <!-- cart dropdown -->
 <li class="list-inline-item">
     <!-- cart icon and total cost conditional classes change color when items in bag -->
-    <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-black{% endif %} nav-link d-block d-lg-none" href="{% url 'view_bag' %}">
+    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link d-block d-lg-none" href="{% url 'view_bag' %}">
         <div class="text-center">
             <!-- icon credit: https://fontawesome.com/icons/cart-flatbed-suitcase?s=solid -->
             <div><i class="fa-solid fa-cart-flatbed-suitcase"></i></div>
