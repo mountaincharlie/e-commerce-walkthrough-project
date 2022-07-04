@@ -107,7 +107,7 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 # temporary for logging account creation confirmation emails to the console
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # allowing allauth to use username or email for logging in
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
@@ -230,4 +230,16 @@ STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
 
 # default email to send from [just an example]
-DEFAULT_FROM_EMAIL = 'relovemusic@example.com'
+# defining whihc email to use in development mode and which for heroku app
+if 'DEVELOPMENT' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'relovemusic@example.com'
+else:
+    # using gmail in production
+    EMAIL_BACKEND = 'django.core.mail.backends.smpt.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST = 'smtp.gamil.com'
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
+    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
