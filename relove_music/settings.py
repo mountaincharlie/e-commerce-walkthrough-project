@@ -187,6 +187,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # S3 bucket (USE_AWS is set as True in heroku config vars)
 if 'USE_AWS' in os.environ:
+    # cache control - allowing browser to cache staticfiles for v long time
+    AWS_S3OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+
     AWS_STORAGE_BUCKET_NAME = 're-love-music'
     # the region on ur AWS account
     AWS_S3_REGION_NAME = 'eu-west-2'
