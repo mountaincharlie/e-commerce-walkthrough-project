@@ -7,7 +7,7 @@ body{
     background-size: cover;
     /* see CI video credit for what this is doing and why */
     /* for fixed header on medium and above screens */
-    height: calc(100vh - 164px);
+    min-height: calc(100vh - 164px);
     color:rgb(34, 33, 33);
     font-family: 'Montserrat', sans-serif;
 }
@@ -22,11 +22,36 @@ body{
 } */
 
 
+/* ------------------- mailchimp */
+
+#mc_embed_signup{
+    background:#fff;
+    clear:left;
+    font:14px Helvetica,Arial,sans-serif;
+    width:600px;
+}
+/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block. We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+
+
+/* ------------------- background colors */
+
+.bg-footer--white {
+    background-color: #fff;
+}
+
+
 /* ------------------- backgrounds for text */
 
 .text-transparent-bg{
     background-color: rgba(34, 34, 34, 0.5);
     border-radius: 4px;
+}
+
+
+/* ------------------- footer container always full width */
+
+.footer-container {
+    width: 100% !important; 
 }
 
 
@@ -300,6 +325,9 @@ input[name='query']::placeholder{
 @media (min-width: 1200px) {
   .container {
     max-width: 80%;
+  }
+  .footer-container {
+    max-width: 100%;
   }
 }
 

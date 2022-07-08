@@ -5,3 +5,9 @@
 
 Re-love Music is an online shop for people who are looking to buy second hand musical instruments and equipment.
 With only a specific selection of products at any one time, user can browse quickly via different catagories and view the sales and special offers pages in order to get great deals on the instruments and equipment they're looking to re-love.
+
+## Additional features to the walkthrough
+
+* using templating to create a toast_base.html for the toast html snippets to extend from
+* using custom content
+* in shopping bag, each bag item is a clickable link to the producty details for that item
